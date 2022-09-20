@@ -1,8 +1,11 @@
 module.exports.login = (req, res) => {
-    res.status(200).json({
-        login: req.body
+    const {email, password} = req.body
+    res.status(200).send({
+        login: {
+            email,
+            password
+        }
     })
-
 }
 
 module.exports.register = (req, res) => {
