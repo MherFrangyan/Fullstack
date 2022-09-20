@@ -1,0 +1,6 @@
+node_modules
+.idea
+#logs
+#./public/index.html
+#./public/userPictures
+#./public/eventFiles
