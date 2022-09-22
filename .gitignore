@@ -1,5 +1,6 @@
 node_modules
 .idea
+package-lock.json
 #logs
 #./public/index.html
 #./public/userPictures
