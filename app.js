@@ -14,7 +14,7 @@ const analyticsRoute = require('./routes/analytics')
 const app = express()
 
 mongoose.connect(key.mongoURI)
-    .then(val => console.log('MongoDB connected'))
+    .then(() => console.log('MongoDB connected'))
     .catch(error => console.log(error))
 
 app.use(morgan('dev'))

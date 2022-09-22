@@ -1,12 +1,39 @@
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 const User = require('../models/User')
-module.exports.login = (req, res) => {
+const keys = require('../configs/keys')
+
+
+module.exports.login = async (req, res) => {
     const {email, password} = req.body
-    res.status(200).send({
-        login: {
-            email,
-            password
+    const conditions =  await User.findOne({email: email})
+    if (conditions) {
+        //ka aydpisi user
+        const passwordResult = bcrypt.compareSync(password, conditions.password)
+        if (passwordResult) {
+            //password hamapatasxanum e
+            const token = await jwt.sign({
+                email: conditions.email,
+                userID: conditions._id
+            }, keys.jwt,{expiresIn: 60 * 60});
+
+            res.status(200).json({
+                token: `Bearer ${token}`
+            })
+
+        } else {
+            //paroly chi hamapatasxanum
+            res.status(401).json({
+                message: 'password chi hamapatasxanum'
+            })
         }
-    })
+
+    } else {
+        //chka aydpisi user
+        res.status(404).send({
+            message: 'aydpisi email chka'
+        })
+    }
 }
 
 module.exports.register = async (req, res) => {
@@ -14,11 +41,25 @@ module.exports.register = async (req, res) => {
     const candidant = await User.findOne({email: email})
     console.log(candidant, 'candidant');
     if (candidant) {
-    //    erb email arden ka. krknvox e
+        //erb email arden ka. krknvox e
         res.status(409).send({
             message: 'Email already exist'
         })
     } else {
+        // client stexcum
+        const salt = bcrypt.genSaltSync(10)
+        const user = new User({
+            email: email,
+            password: bcrypt.hashSync(password, salt)
+        })
+
+        try {
+            await user.save()
+            res.status(202).json({user})
+
+        } catch (e) {
+
+        }
 
     }
     // const user = new User({
