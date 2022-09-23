@@ -1,15 +1,52 @@
-module.exports.getCategoryById = (req, res) => {
+const errorHandler = require('../utils/errorHandlers')
+const Position = require('../models/Position')
 
+module.exports.getCategoryById = async (req, res) => {
+     try{
+        const position =  Position.find({
+            category: req.params.categoryId,
+            user: req.user.id,
+        })
+         res.status(200).send(position)
+     } catch (e) {
+         errorHandler(res, e)
+     }
 }
 
-module.exports.getAll = (req, res) => {
-
+module.exports.create = async (req, res) => {
+    try{
+        const position = await new Position({
+            name: req.body.name,
+            cost: req.body.cost,
+            category: req.body.category,
+            user: req.user.id,
+        }).save()
+        res.status(201).send(position)
+    } catch (e) {
+        errorHandler(res, e)
+    }
 }
 
-module.exports.update = (req, res) => {
-
+module.exports.update = async (req, res) => {
+    try{
+        const position = await Position.findByIdAndUpdate(
+            {_id: req.params.id},
+            {$set: req.body},
+            {new: true}
+        )
+        res.status(200).send(position)
+    } catch (e) {
+        errorHandler(res, e)
+    }
 }
 
-module.exports.remove = (req, res) => {
-
+module.exports.remove = async (req, res) => {
+    try{
+        await Position.remove({_id: req.params.id});
+        res.status(410).send({
+            message: 'Position has deleted'
+        })
+    } catch (e) {
+        errorHandler(res, e)
+    }
 }
