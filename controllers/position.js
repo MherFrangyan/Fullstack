@@ -29,7 +29,7 @@ module.exports.create = async (req, res) => {
 
 module.exports.update = async (req, res) => {
     try{
-        const position = await Position.findByIdAndUpdate(
+        const position = await Position.findOneAndUpdate(
             {_id: req.params.id},
             {$set: req.body},
             {new: true}
