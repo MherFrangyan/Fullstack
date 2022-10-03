@@ -37,7 +37,7 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return !!this.token
+    return !!localStorage.getItem('auth-token')
   }
 
   logAuth() {

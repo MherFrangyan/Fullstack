@@ -25,14 +25,14 @@ module.exports.login = async (req, res) => {
         } else {
             //paroly chi hamapatasxanum
             res.status(401).json({
-                message: 'password chi hamapatasxanum'
+                message: 'Password does not match'
             })
         }
 
     } else {
         //chka aydpisi user
         res.status(404).send({
-            message: 'aydpisi email chka'
+            message: 'Email does not exist'
         })
     }
 }
