@@ -32,7 +32,7 @@ export class AuthService {
     this.token = token;
   }
 
-  get getToken(): string {
+  getToken(): string {
     return this.token
   }
 

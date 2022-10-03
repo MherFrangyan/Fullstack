@@ -5,13 +5,13 @@
   <div class="card-content">
     <span class="card-title">Войти в систему</span>
     <div class="input-field">
-        <label for="email">Email:</label>
       <input
         id="email"
         type="email"
         formControlName="email"
         [ngClass]="{'invalid': form?.get('email')?.invalid && form?.get('email')?.touched}"
       >
+      <label for="email">Email:</label>
       <span class="helper-text red-text"
             *ngIf="form?.get('email')?.touched && form?.get('email')?.invalid"
       >
@@ -25,6 +25,7 @@
         id="password"
         type="password"
         formControlName="password"
+        [ngClass]="{'invalid': form?.get('email')?.invalid && form?.get('email')?.touched}"
       >
       <label for="password">Пароль:</label>
       <span class="helper-text red-text"
@@ -35,7 +36,7 @@
         <span *ngIf="form?.get('password')?.errors['minlength']
               && form?.get('password')?.errors['minlength']['requiredLength']">
            password should be {{form?.get('password')?.errors['minlength']['requiredLength']}} character now
-            {{form?.get('password')?.errors['minlength']['actualLength']}}</span>
+          {{form?.get('password')?.errors['minlength']['actualLength']}}</span>
       </span>
     </div>
   </div>
@@ -43,6 +44,7 @@
     <button
       [disabled]="form?.invalid || form?.disabled"
       class="modal-action btn waves-effect"
-    >Войти</button>
+    >Войти
+    </button>
   </div>
 </form>

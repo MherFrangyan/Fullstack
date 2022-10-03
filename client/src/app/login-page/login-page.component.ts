@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../shared/service/auth.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {Subscribable, Subscriber, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-login-page',
@@ -43,7 +43,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     this.aSub = this.authService.login(this.form.value).subscribe(
       res => {
         console.log(res);
-        this.route.navigate(['/site'])
+        // this.route.navigate(['/site'])
       },
       error => {
         console.warn(error)
