@@ -4,10 +4,10 @@ const Schema = mongoose.Schema
 const orderSchema = new Schema({
     date: {
         type: Date,
-        default: Date.now()
+        default: Date.now
     },
     order: {
-        type: String,
+        type: Number,
         require: true,
     },
     list: [

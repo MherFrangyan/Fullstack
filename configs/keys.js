@@ -1,6 +1,5 @@
-const keys = {
-    mongoURI: 'mongodb+srv://Mher-F:bsEbUTcveq5FGxGu@cluster0.ksrpamj.mongodb.net/?retryWrites=true&w=majority',
-    jwt: 'dev-jwt'
+if (process.env.NODE_ENV === 'production') {
+    module.exports = require('./keys.prod')
+} else {
+    module.exports = require('./keys.dev')
 }
-
-module.exports = keys

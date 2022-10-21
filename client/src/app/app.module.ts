@@ -18,22 +18,34 @@ import { HistoryPageComponent } from './history-page/history-page.component';
 import { OrderPageComponent } from './order-page/order-page.component';
 import { CategoriesPageComponent } from './categories-page/categories-page.component';
 import { LoaderComponent } from './shared/loader/loader.component';
+import { CategoriesFormComponent } from './categories-page/categories-form/categories-form.component';
+import { PositionsFormComponent } from './categories-page/categories-form/positions-form/positions-form.component';
+import { OrderCategoriesComponent } from './order-page/order-categories/order-categories.component';
+import { OrderPositionComponent } from './order-page/order-position/order-position.component';
+import { HistoryFilterComponent } from './history-page/history-filter/history-filter.component';
+import {HistoryListComponent} from "./history-page/history-list/history-list.component";
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginPageComponent,
-    AuthLayoutComponent,
-    SiteLayoutComponent,
-    RegisterPageComponent,
-    OverviewPageComponent,
-    AnalyticsPageComponent,
-    HistoryPageComponent,
-    OrderPageComponent,
-    CategoriesPageComponent,
-    LoaderComponent
-  ],
+    declarations: [
+        AppComponent,
+        LoginPageComponent,
+        AuthLayoutComponent,
+        SiteLayoutComponent,
+        RegisterPageComponent,
+        OverviewPageComponent,
+        AnalyticsPageComponent,
+        HistoryPageComponent,
+        OrderPageComponent,
+        CategoriesPageComponent,
+        LoaderComponent,
+        CategoriesFormComponent,
+        PositionsFormComponent,
+        OrderCategoriesComponent,
+        OrderPositionComponent,
+        HistoryFilterComponent,
+        HistoryListComponent
+    ],
   imports: [
     BrowserModule,
     CommonModule,

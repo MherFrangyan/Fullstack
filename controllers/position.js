@@ -2,12 +2,12 @@ const errorHandler = require('../utils/errorHandlers')
 const Position = require('../models/Position')
 
 module.exports.getCategoryById = async (req, res) => {
-     try{
-        const position =  Position.find({
+    try{
+        const position = await Position.find({
             category: req.params.categoryId,
-            user: req.user.id,
+            user: req.user._id,
         })
-         res.status(200).send(position)
+            res.status(200).send(position)
      } catch (e) {
          errorHandler(res, e)
      }
@@ -43,7 +43,7 @@ module.exports.update = async (req, res) => {
 module.exports.remove = async (req, res) => {
     try{
         await Position.remove({_id: req.params.id});
-        res.status(410).send({
+        res.status(200).send({
             message: 'Position has deleted'
         })
     } catch (e) {

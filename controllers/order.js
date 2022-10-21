@@ -21,12 +21,13 @@ module.exports.getAll = async (req, res) => {
     }
 
     if (req.query.order) {
-        query.order = req.query.order;
+        query.order = +req.query.order;
     }
     try{
-        const orders = Order
+        console.log(query,'queryquery');
+        const orders =  await Order
             .find(query)
-            .sort({data: -1})
+            .sort({date: 1})
             .skip(+req.query.offset)
             .limit(+req.query.limit)
         res.status(200).json(orders)
@@ -39,10 +40,10 @@ module.exports.create = async (req, res) => {
     try{
         const lastOrder = await Order
             .findOne({user: req.user.id})
-            .sort({data: -1});
+            .sort({date: -1});
 
         const maxOrder = lastOrder ? lastOrder.order : 0;
-
+        console.log(lastOrder, 'lastOrder');
         const order = await new Order({
             list: req.body.list,
             user: req.user.id,

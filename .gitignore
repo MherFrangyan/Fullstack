@@ -2,6 +2,8 @@ node_modules
 .idea
 package-lock.json
 client/.vscode/*
+client/.vscode/*
+configs/keys.dev.js
 #logs
 #./public/index.html
 #./public/userPictures

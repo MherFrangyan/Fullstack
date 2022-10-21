@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CategoryService} from "../shared/service/category.service";
 import {Category} from "../shared/interface";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-categories-page',
@@ -9,7 +10,7 @@ import {Category} from "../shared/interface";
 })
 export class CategoriesPageComponent implements OnInit {
   loader = false;
-  categoryList: Category[] = [];
+  categoryList$: Observable<Category[]>;
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
@@ -18,12 +19,7 @@ export class CategoriesPageComponent implements OnInit {
 
 
   fetchData() {
-    this.loader = true;
-    this.categoryService.fetch().subscribe(category => {
-      console.log(category,'fetchData()');
-      this.loader = false;
-      this.categoryList = category;
-    })
+   this.categoryList$ = this.categoryService.fetch()
   }
 
 }
